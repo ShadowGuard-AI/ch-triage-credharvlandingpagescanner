@@ -31,8 +31,10 @@ def is_valid_url(url):
     """
     try:
         result = urlparse(url)
-        return all([result.scheme, result.netloc])
-    except:
+        # Scheme matters: accepting any scheme with a host let ftp and
+        # other non-web URLs through to a scanner that only fetches HTTP.
+        return result.scheme in ("http", "https") and bool(result.netloc)
+    except Exception:
         return False
 
 def download_html(url):
@@ -111,7 +113,7 @@ def identify_potential_login_forms(forms):
 
     return login_forms
 
-def analyze_form_actions(login_forms):
+def analyze_form_actions(login_forms, base_url=None):
     """
     Analyzes the form actions for potentially malicious patterns.
 
@@ -122,13 +124,19 @@ def analyze_form_actions(login_forms):
         list: A list of form dictionaries with potentially malicious actions.
     """
     suspicious_forms = []
+    base_host = urlparse(base_url).netloc if base_url else None
     for form in login_forms:
         if form['action']:
             url_parts = urlparse(form['action'])
-            # Example heuristic: Check if the domain is different from the original URL (possible redirection)
-            # You can add more sophisticated heuristics here, e.g., checking for IP addresses, common phishing domains, etc.
-            if url_parts.scheme in ('http', 'https'):
-                 suspicious_forms.append(form)
+            # The signal this was written for is a credential form that
+            # posts somewhere other than the site serving it. The old
+            # check never saw the page URL and flagged every login form
+            # with an http action, including a form posting to its own
+            # origin, so same-origin forms are not findings here.
+            if url_parts.scheme not in ('http', 'https'):
+                suspicious_forms.append(form)
+            elif base_host and url_parts.netloc and url_parts.netloc != base_host:
+                suspicious_forms.append(form)
     return suspicious_forms
 
 
@@ -163,6 +171,7 @@ def print_results(suspicious_forms, output_file=None):
 
             except IOError as e:
                 logging.error(f"Error writing to file: {e}")
+                raise SystemExit(1)
 
     else:
         print("No potentially malicious login forms found.")
@@ -181,15 +190,15 @@ def main():
 
     if not is_valid_url(url):
         logging.error("Invalid URL provided.")
-        return
+        raise SystemExit(1)
 
     html_content = download_html(url)
     if not html_content:
-        return
+        raise SystemExit(1)
 
     forms = find_forms(html_content, url)
     login_forms = identify_potential_login_forms(forms)
-    suspicious_forms = analyze_form_actions(login_forms)
+    suspicious_forms = analyze_form_actions(login_forms, url)
 
     print_results(suspicious_forms, args.output)
 

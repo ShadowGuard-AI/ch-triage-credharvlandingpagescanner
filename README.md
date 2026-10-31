@@ -1,7 +1,7 @@
 ![Banner](banner.png)
 
 # ch-triage-CredHarvLandingPageScanner
-Given a URL, downloads the HTML content of the landing page and scans for input fields (username/password) and associated form submission endpoints.  Reports potentially malicious form actions. - Focused on Automates the initial triage of credential harvester output (e.g., logs from routers, web application credential stuffing attacks). Identifies likely valid credentials based on heuristics like password complexity, email validation, and common pattern analysis. Reduces the manual effort required to filter and validate captured credentials, focusing attention on the most promising leads.
+Given a URL, downloads the HTML content of the landing page and scans for input fields (username/password) and associated form submission endpoints. Reports potentially malicious form actions. This is a landing page scanner: it fetches one user supplied URL and flags login forms that post off origin or to a non-web scheme.
 
 ## Install
 `git clone https://github.com/ShadowStrikeHQ/ch-triage-credharvlandingpagescanner`

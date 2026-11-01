@@ -37,6 +37,11 @@ def is_valid_url(url):
     except Exception:
         return False
 
+# Everything below works on the HTML exactly as delivered. A page
+# that builds its login form with JavaScript has no form in this
+# text at all, so the scanner's clean answer for such a page means
+# nothing was in the static markup, not that no form exists when a
+# browser renders it.
 def download_html(url):
     """
     Downloads the HTML content of a URL.
@@ -79,6 +84,10 @@ def find_forms(html, base_url):
         for input_field in form.find_all('input'):
             input_type = input_field.get('type', '').lower()
             input_name = input_field.get('name')
+            # An input with no name is dropped from the record entirely,
+            # including a password field. A form whose password box is
+            # named only by id therefore shows no password input below
+            # and is never counted as a login form at all.
             if input_name:  # Add check for missing name attributes.
                 inputs.append({'type': input_type, 'name': input_name})
 
@@ -103,6 +112,10 @@ def identify_potential_login_forms(forms):
         has_password = False
         for input_field in form['inputs']:
             if 'name' in input_field:
+                # Substring tests on the field name. user matches inside
+                # longer names I did not mean, and the obvious name
+                # login matches none of the three, so a form naming its
+                # field login is missed by the very check built for it.
                 if 'username' in input_field['name'].lower() or 'email' in input_field['name'].lower() or 'user' in input_field['name'].lower():
                     has_username = True
                 if input_field['type'] == 'password':
@@ -136,6 +149,12 @@ def analyze_form_actions(login_forms, base_url=None):
             if url_parts.scheme not in ('http', 'https'):
                 suspicious_forms.append(form)
             elif base_host and url_parts.netloc and url_parts.netloc != base_host:
+                # The host comparison is the raw netloc string, port
+                # and case included, and any subdomain counts as a
+                # different host. A form posting to the organisation's
+                # own sign in subdomain is therefore flagged the same
+                # as one posting to a stranger, and the reader has to
+                # make that judgement from the printed action.
                 suspicious_forms.append(form)
     return suspicious_forms
 

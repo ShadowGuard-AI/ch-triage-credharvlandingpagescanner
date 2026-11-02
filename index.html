@@ -3,164 +3,88 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ch Triage Credharvlandingpagescanner: what it is, how it runs, where it stops</title>
-<meta name="description" content="Ch Triage Credharvlandingpagescanner is one of my projects. The README in the repo is short, so this page sticks to what the files themselves show.">
+<title>ch-triage-credharvlandingpagescanner: Coral Reef Lagoon at Noon</title>
+<meta name="description" content="Given a URL, downloads the HTML content of the landing page and scans for credential fields and form submission endpoints.">
 <style>
-:root {
-  --bg: #101214; --panel: #1c1f22; --ink: #eee8dc;
-  --mut: #25292d;
-  --acc: #e8b339; --acc2: #c75432;
-  --line: #1c1f22;
-}
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink);
-  font-family: 'Palatino Linotype', Palatino, serif; line-height: 1.55; }
-code, pre, .mono { font-family: 'Menlo', monospace; }
-a { color: var(--acc2); }
-.hero { padding: 3rem 6vw 1rem; }
-.hero img.banner { width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: 10px; }
-.logo { width: 92px; height: 92px; border-radius: 18px;
-  border: 1px solid var(--line); }
-h1 { font-size: 2.4rem; margin: 0.4em 0 0.1em; }
-h2 { border-bottom: 2px solid var(--acc); padding-bottom: 0.2em;
-  margin-top: 2em; }
-.lede { font-size: 1.15rem; max-width: 62ch; }
-main { padding: 0 6vw 3rem; max-width: 1180px; margin: 0 auto; }
-.grid { display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
-.card { background: var(--panel); border: 1px solid var(--line);
-  border-radius: 12px; padding: 1rem 1.2rem; }
-.card.pop { animation: rise 0.7s ease both; }
-@keyframes rise { from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; } }
-pre.code { background: #101014; color: #e8e6df; padding: 1rem 1.2rem;
-  border-radius: 12px; overflow-x: auto; font-size: 0.86rem;
-  border-left: 5px solid var(--acc); }
-table { border-collapse: collapse; width: 100%; }
-td, th { border-bottom: 1px solid var(--line); padding: 0.45rem 0.6rem;
-  text-align: left; }
-.shots { display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.shots img { width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: 10px; background: #f4f1e8; }
-footer { padding: 2rem 6vw; border-top: 1px solid var(--line);
-  color: var(--mut); }
-.rail { display: flex; gap: 1.2rem; align-items: flex-start; }
-.rail nav { position: sticky; top: 1rem; min-width: 180px; }
-@media (max-width: 760px) { .rail { flex-direction: column; }
-  .rail nav { position: static; } }
-@media (prefers-reduced-motion: reduce) {
-  .card.pop { animation: none; } * { scroll-behavior: auto; } }
+@font-face{font-family:'Baloo 2';src:url('fonts/Baloo2.ttf') format('truetype');}
+@font-face{font-family:'Cabin';src:url('fonts/Cabin.ttf') format('truetype');}
+:root{--shadow:#184e6b;--shadow2:#0f3a52;--deep:#1e6b4f;--amber:#c98f2d;--sand:#efe3c0;--abalone:#e9e4d8;--ink:#14313f}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,var(--shadow) 0%,var(--shadow2) 100%);color:var(--ink);font-family:'Cabin',sans-serif;line-height:1.65}
+h1,h2,h3{font-family:'Baloo 2',sans-serif;color:var(--deep)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end}
+.hero img.heroimg{width:100%;height:58vh;object-fit:cover;display:block}
+.hero .in{padding:1rem 6vw 2.2rem 9vw;max-width:1180px;margin:0 auto;width:100%;color:var(--sand);position:relative}
+.hero h1{color:var(--sand);font-size:2rem;margin:.4rem 0}
+.logo{width:200px;border-radius:4px}
+main{padding:0 6vw 3rem 9vw;max-width:1180px;margin:0 auto;position:relative}
+main::before{content:'';position:absolute;left:3.2vw;top:0;bottom:0;width:3px;background:repeating-linear-gradient(180deg,var(--amber) 0 3px,transparent 3px 34px)}
+nav{display:flex;gap:.9rem;flex-wrap:wrap;margin:1.2rem 0}
+.weight{display:inline-block;text-decoration:none;color:var(--sand);font-family:'Baloo 2',sans-serif;font-size:1rem;padding:.85rem 1.3rem .55rem;background:radial-gradient(ellipse at 50% 30%,#2a6a8c,#123c56);border:2px solid #7a5c22;border-radius:48% 48% 46% 46%/60% 60% 40% 40%;text-align:center;position:relative;transition:box-shadow .15s}
+.weight:hover{box-shadow:0 0 0 5px rgba(201,143,45,.35),0 0 18px rgba(255,252,220,.35)}
+.weight:active{background:radial-gradient(ellipse at 50% 30%,#1d5878,#0d3049)}
+.weight:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.slate{background:linear-gradient(140deg,#f0ead9,#e3ddcd 55%,#ece5d4);border-radius:6px;box-shadow:inset 0 0 24px rgba(30,107,79,.14);padding:.4rem 1.6rem 1.4rem 2rem;margin:1.8rem 0;position:relative}
+.slate::before{content:'';position:absolute;left:11px;top:14px;bottom:14px;width:3px;background:repeating-linear-gradient(180deg,var(--deep) 0 10px,transparent 10px 22px)}
+.slate h2{font-size:1.7rem;border-bottom:1px solid rgba(30,107,79,.35);padding-bottom:.3rem}
+pre{background:var(--shadow2);color:var(--sand);padding:1rem;overflow-x:auto;font-size:.95rem}
+a{color:#8a5c10}
+a::before{content:'';display:inline-block;width:13px;height:13px;margin-right:.45em;border:2px solid rgba(201,143,45,.55);border-left-color:transparent;border-radius:50%;vertical-align:-1px}
+a:hover::before{border-color:var(--amber)}
+.weight::before{content:none}
+.arm{height:16px;margin:2.2rem 0;position:relative;background:radial-gradient(ellipse 60px 7px at 8% 50%,var(--deep) 60%,transparent 61%),radial-gradient(ellipse 60px 7px at 30% 50%,var(--deep) 60%,transparent 61%),radial-gradient(ellipse 60px 7px at 52% 50%,var(--deep) 60%,transparent 61%),radial-gradient(ellipse 60px 7px at 74% 50%,var(--deep) 60%,transparent 61%),radial-gradient(ellipse 60px 7px at 95% 50%,var(--deep) 60%,transparent 61%)}
+.arm::after{content:'· · · · · · · · · · · ·';position:absolute;left:6%;top:5px;color:var(--abalone);letter-spacing:2.6em;font-size:.6rem}
+.ctl{display:flex;gap:1rem;padding:.5rem 0;border-bottom:1px solid rgba(30,107,79,.25)}
+.ctl b{font-family:'Baloo 2',sans-serif;min-width:60px;color:var(--deep)}
+.shade{background:var(--deep);color:var(--sand);border-top:9px solid #123c2c;padding:.2rem 1.3rem 1rem;margin:1.3rem 0}
+.shade h3{color:var(--sand);font-size:1.35rem}
+footer{padding:1rem 6vw 2.4rem 9vw;max-width:1180px;margin:0 auto;color:var(--sand)}
 </style>
 </head>
-<body class="layout-note">
-<!-- This page exists for ch-triage-credharvlandingpagescanner alone: the layout (notebook),
-     the colors, and the type were picked for this project, not
-     shared with the other project pages. The code block below is
-     copied from the file it names, line for line. If it looks
-     plain, that is because the project is plain, and I would
-     rather the page match the project than dress it up. The one
-     thing I will not do here is oversell: what this project does
-     not do is stated on the page, not hidden from it. -->
+<body>
 <header class="hero">
-  <img class="logo" src="assets/logo.png" alt="Ch Triage Credharvlandingpagescanner logo">
-  <img class="banner" src="assets/banner.png" alt="">
-  <h1>Ch Triage Credharvlandingpagescanner</h1>
-  <p class="mono"><a href="https://github.com/ShadowGuard-AI/ch-triage-credharvlandingpagescanner">github.com/ShadowGuard-AI/ch-triage-credharvlandingpagescanner</a></p>
+<img class="heroimg" src="assets/intro-banner.png" alt="A noon lagoon with nothing to read in it: pale sand, a standing coral branch, parrotfish past a low ledge, a sleeping turtle in the ledge shade">
+<div class="in">
+<img class="logo" src="assets/logo.png" alt="A coral branch upright on a disc of shadow blue water with one small parrotfish at its left, the name lettered under it like marks on a sounding line">
+<h1>ch-triage-credharvlandingpagescanner</h1>
+<p>A noon survey transect, a straight line swum across the lagoon with a station at each documented fact. At noon, in water this clear, anything that does not belong here can be seen from a long way off.</p>
+<nav>
+<a class="weight" href="#fetch">Fetch This Page</a>
+<a class="weight" href="#posts">Show Flagged Forms</a>
+<a class="weight" href="#params">Show Help</a>
+</nav>
+</div>
 </header>
-
 <main>
-  <section class="rail">
-    <nav aria-label="on this page">
-      <p class="mono"><a href="#run">Run it</a><br>
-      <a href="#files">The files</a><br>
-      <a href="#sheets">The sheets</a><br>
-      <a href="https://github.com/ShadowGuard-AI/ch-triage-credharvlandingpagescanner">The repo</a></p>
-    </nav>
-    <div>
-      <p class="lede">Ch Triage Credharvlandingpagescanner is one of my projects. The README in the repo is short, so this page sticks to what the files themselves show.</p>
-      <div class="grid">
-        <div class="card pop"><h3>What it is</h3>
-          <p>Ch Triage Credharvlandingpagescanner: 5 files, 232 counted
-          lines across Python 212, Markdown 18, Text 2. One job, done in the
-          open, in files you can read.</p></div>
-        <div class="card pop"><h3>The biggest piece</h3>
-          <p><code>main.py</code> carries the most
-          lines. If the project grows, that file is where the growth
-          lands first, for better or worse.</p></div>
-        <div class="card pop"><h3>The honest gap</h3>
-          <p>No test files yet. That is the honest gap, and the roadmap in the visuals folder says what the first one should cover.</p></div>
-      </div>
-      <section id="run">
-        <h2>Run it</h2>
-        <p>The repo README has the exact commands for this one. The
-        shape is the shape for most of my projects: clone it, read the
-        top file first so you know what will happen, then run it on
-        something you do not mind breaking.</p>
-        <p class="mono">$ git clone https://github.com/ShadowGuard-AI/ch-triage-credharvlandingpagescanner.git<br>$ cd ch-triage-credharvlandingpagescanner</p>
-      </section>
-      
-  <section aria-label="real code">
-    <h2>The code, as it sits in the repo</h2>
-    <p>From <code>main.py</code>, line 9 on. I did
-    not tidy it for the page. What you see is what the file has.</p>
-    <pre class="code"><code>logging.basicConfig(level=logging.INFO, format=&#x27;%(asctime)s - %(levelname)s - %(message)s&#x27;)
-
-def setup_argparse():
-    &quot;&quot;&quot;
-    Sets up the argument parser for the command line interface.
-    &quot;&quot;&quot;
-    parser = argparse.ArgumentParser(description=&quot;Credential Harvester Landing Page Scanner&quot;)
-    parser.add_argument(&quot;url&quot;, help=&quot;The URL of the landing page to scan&quot;)
-    parser.add_argument(&quot;-v&quot;, &quot;--verbose&quot;, action=&quot;store_true&quot;, help=&quot;Enable verbose output (debug logging)&quot;)
-    parser.add_argument(&quot;-o&quot;, &quot;--output&quot;, help=&quot;Output file to save results (optional)&quot;, default=None)
-    return parser.parse_args()
-
-
-def is_valid_url(url):
-    &quot;&quot;&quot;
-    Checks if a URL is valid.
-
-    Args:
-        url (str): The URL to validate.
-
-    Returns:
-        bool: True if the URL is valid, False otherwise.</code></pre>
-  </section>
-      <section id="files">
-        <h2>The files that matter</h2>
-        <table><tr><th>File</th><th>Lines</th></tr>
-        <tr><td><code>main.py</code></td><td>212</td></tr>
-        <tr><td><code>README.md</code></td><td>18</td></tr>
-        <tr><td><code>requirements.txt</code></td><td>2</td></tr>
-        <tr><td><code>banner.png</code></td><td>0</td></tr>
-        <tr><td><code>logo.png</code></td><td>0</td></tr>
-        </table>
-        <p>Names doing the work: <span class="mono">setup_argparse, is_valid_url, download_html, find_forms, identify_potential_login_forms, analyze_form_actions, print_results, main</span>.</p>
-      </section>
-      <section id="sheets">
-        <h2>Drawn by hand</h2>
-        <p>I sketch my projects on notebook paper so I have to
-        understand them well enough to draw them. The full set,
-        with the counts and how they were counted, is the
-        <a href="https://github.com/ShadowGuard-AI/ch-triage-credharvlandingpagescanner/tree/main/ch-triage-credharvlandingpagescanner-Visuals">ch-triage-credharvlandingpagescanner-Visuals</a>
-        folder in the repo. Nothing is drawn over the binder holes.
-        That is a rule, not a style.</p>
-        <div class="shots">
-          <img src="assets/architecture.png" alt="Hand drawn architecture sheet for Ch Triage Credharvlandingpagescanner">
-          <img src="assets/flowchart.png" alt="Hand drawn flowchart sheet for Ch Triage Credharvlandingpagescanner">
-          <img src="assets/product-map.png" alt="Hand drawn product map sheet for Ch Triage Credharvlandingpagescanner">
-        </div>
-      </section>
-    </div>
-  </section>
+<section class="slate" id="fetch"><h2>One URL, Fetched Once</h2>
+<p>Given a URL, the tool downloads the HTML content of the landing page. That single sentence is the whole intake of the tool as documented: one user supplied URL, one page fetched. This station adds no crawls, no link following, and no site wide scanning, none of which the source claims.</p>
+</section>
+<div class="arm"></div>
+<section class="slate"><h2>Credential Fields</h2>
+<p>On that page the scanner looks for input fields for username and password, and the form submission endpoints associated with them. The two field kinds carry their own markers on this transect, since a page can hold many forms and the source singles out credential fields as the ones that matter here.</p>
+</section>
+<div class="arm"></div>
+<section class="slate" id="posts"><h2>Where the Form Posts</h2>
+<p>The scanner reports potentially malicious form actions, and in the fuller phrasing it flags login forms that post off origin or to a non web scheme. Those two destinations, away from the page's own origin and away from ordinary web schemes, are the documented tests. No other test is listed, and this station invents no checks for page text, brand imitation, certificates, or redirects.</p>
+</section>
+<div class="arm"></div>
+<section class="slate"><h2>Taking the Tool and Calling It</h2>
+<pre>git clone https://github.com/ShadowStrikeHQ/ch-triage-credharvlandingpagescanner</pre>
+<pre>./ch-triage-credharvlandingpagescanner [params]</pre>
+<div class="shade"><h3>The URL Argument Is Not Named</h3>
+<p>The source describes a tool driven by a supplied URL, yet the usage form never names a URL argument, so how the address is handed over is not documented. That gap stays visible rather than being patched with a plausible looking example.</p></div>
+<p><a href="https://github.com/ShadowGuard-AI/ch-triage-credharvlandingpagescanner">The repository on GitHub</a></p>
+</section>
+<div class="arm"></div>
+<section class="slate" id="params"><h2>Three Parameters Only</h2>
+<div class="ctl"><b>-h</b><span>Shows a help message and exits.</span></div>
+<div class="ctl"><b>-v</b><span>No description provided in the source.</span></div>
+<div class="ctl"><b>-o</b><span>No description provided in the source.</span></div>
+<div class="shade"><h3>Listed Without a Description</h3>
+<p>Two of the three markers on this shoal, -v and -o, are listed without a description, so a reader cannot tell from the document what either one does. No meaning is guessed for -o as an output path, however common that pattern is elsewhere.</p></div>
+<p>The honesty panel closes the transect: the source gives no sample page, no example report, no list of schemes it treats as non web beyond that phrase, and no test results, and this page states each absence plainly. The credit line closes the page as printed, with no licence named:</p>
+<pre>Copyright (c) ShadowStrikeHQ</pre>
+</section>
 </main>
-<footer>
-  <p>Ch Triage Credharvlandingpagescanner is one of my projects. This page was written
-  from the repo itself on 2026-10-30: the counts are the
-  repo's counts, the code is the repo's code, and the gaps are the
-  repo's gaps.</p>
-</footer>
+<footer><p>Theme: Coral Reef Lagoon at Noon. Type: Baloo 2 for headings, Cabin for reading, both SIL Open Font License 1.1. The lettering reference Durango Western was reference only and is not embedded.</p></footer>
 </body>
 </html>

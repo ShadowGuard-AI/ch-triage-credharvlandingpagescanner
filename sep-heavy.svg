@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 40" role="img" aria-label="A major divider: sonar rings expanding from a small brass bell point at the left margin, three rings reaching across the page in sequence and fading">
+<g fill="none" stroke="#c98f2d">
+<circle cx="30" cy="20" r="6" fill="#c98f2d" stroke="none"/>
+<circle cx="30" cy="20" r="16" stroke-width="3" opacity=".85"><animate attributeName="r" values="10;52" dur="3.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".85;0" dur="3.6s" repeatCount="indefinite"/></circle>
+<circle cx="30" cy="20" r="16" stroke-width="3" opacity=".85"><animate attributeName="r" values="10;52" dur="3.6s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".85;0" dur="3.6s" begin="1.2s" repeatCount="indefinite"/></circle>
+<circle cx="30" cy="20" r="16" stroke-width="3" opacity=".85"><animate attributeName="r" values="10;52" dur="3.6s" begin="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".85;0" dur="3.6s" begin="2.4s" repeatCount="indefinite"/></circle>
+</g>
+<line x1="90" y1="20" x2="1180" y2="20" stroke="#1e6b4f" stroke-width="2" stroke-dasharray="2 14"/>
+</svg>

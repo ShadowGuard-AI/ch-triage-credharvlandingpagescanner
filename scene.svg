@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="The lagoon in three layers of water: noon light patches move across the surface, the coral branch stands fixed while parrotfish cross behind it and the turtle breathes under the ledge, and a small bubble stream rises from the sand bed to the surface">
+<rect x="0" y="0" width="1200" height="300" fill="#184e6b"/>
+<rect x="0" y="0" width="1200" height="58" fill="#2a6a8c"/>
+<g fill="#fffcdc">
+<ellipse cx="180" cy="26" rx="86" ry="9" opacity=".35"><animate attributeName="rx" values="86;112;86" dur="11s" repeatCount="indefinite"/><animate attributeName="cx" values="180;214;180" dur="11s" repeatCount="indefinite"/></ellipse>
+<ellipse cx="560" cy="18" rx="70" ry="8" opacity=".3"><animate attributeName="rx" values="70;96;70" dur="13s" repeatCount="indefinite"/><animate attributeName="cx" values="560;528;560" dur="13s" repeatCount="indefinite"/></ellipse>
+<ellipse cx="930" cy="30" rx="96" ry="9" opacity=".33"><animate attributeName="rx" values="96;70;96" dur="12s" repeatCount="indefinite"/><animate attributeName="cx" values="930;962;930" dur="12s" repeatCount="indefinite"/></ellipse>
+</g>
+<rect x="0" y="196" width="1200" height="104" fill="#efe3c0"/>
+<polygon points="0,196 1200,178 1200,214 0,238" fill="#1e6b4f"/>
+<g stroke="#c98f2d" stroke-linecap="round">
+<line x1="952" y1="238" x2="958" y2="150" stroke-width="15"/>
+<line x1="958" y1="158" x2="908" y2="98" stroke-width="10"/><line x1="958" y1="156" x2="1012" y2="92" stroke-width="10"/><line x1="956" y1="148" x2="968" y2="76" stroke-width="8"/>
+</g>
+<g fill="#eee2cd">
+<circle cx="908" cy="92" r="10"/><circle cx="1012" cy="86" r="10"/><circle cx="968" cy="68" r="9"/>
+<animateTransform attributeName="transform" type="rotate" values="-1.6 956 238;1.6 956 238;-1.6 956 238" dur="9s" repeatCount="indefinite"/>
+</g>
+<g>
+<ellipse cx="0" cy="168" rx="42" ry="14" fill="#1a6e4e"/>
+<polygon points="38,168 62,156 62,180" fill="#166044"/>
+<polygon points="-40,164 -26,168 -40,173" fill="#f0eedc"/>
+<animateTransform attributeName="transform" type="translate" values="-90 0; 560 0; 560 0; -90 0" keyTimes="0;0.42;0.9;1" dur="26s" repeatCount="indefinite"/>
+</g>
+<g>
+<ellipse cx="180" cy="212" rx="52" ry="18" fill="#566e4a"/>
+<ellipse cx="180" cy="212" rx="52" ry="18" fill="none" stroke="#3e5234" stroke-width="3"/>
+<animateTransform attributeName="transform" type="translate" values="0 0; 0 -2.5; 0 0" dur="7s" repeatCount="indefinite"/>
+</g>
+<polygon points="36,196 330,190 344,222 52,230" fill="#6a6050"/>
+<g fill="none" stroke="#e9e4d8" stroke-width="2.4">
+<circle cx="300" cy="238" r="4"><animate attributeName="cy" values="238;60" dur="8s" repeatCount="indefinite"/><animate attributeName="cx" values="300;292;306;298" dur="8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.9;0" dur="8s" repeatCount="indefinite"/></circle>
+<circle cx="312" cy="246" r="3"><animate attributeName="cy" values="246;66" dur="8s" begin="1.6s" repeatCount="indefinite"/><animate attributeName="cx" values="312;320;306;314" dur="8s" begin="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.85;0" dur="8s" begin="1.6s" repeatCount="indefinite"/></circle>
+<circle cx="294" cy="252" r="2.6"><animate attributeName="cy" values="252;72" dur="8s" begin="3.1s" repeatCount="indefinite"/><animate attributeName="cx" values="294;286;300;292" dur="8s" begin="3.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0" dur="8s" begin="3.1s" repeatCount="indefinite"/></circle>
+</g>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 40" role="img" aria-label="A minor divider: one small sonar ring at the centre">
+<g fill="none" stroke="#c98f2d">
+<circle cx="600" cy="20" r="4" fill="#c98f2d" stroke="none"/>
+<circle cx="600" cy="20" r="12" stroke-width="2.6" opacity=".8"><animate attributeName="r" values="7;20" dur="3.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="3.6s" repeatCount="indefinite"/></circle>
+</g>
+</svg>

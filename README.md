@@ -1,3 +1,5 @@
+![The inspector's hands close up holding the presented ticket, completely blank, beside the one red striped ticket laid apart on the desk, the brass punch and the gangway rail soft behind](intro-banner.png)
+
 # ch-triage-CredHarvLandingPageScanner
 
 ![One plain cream boarding ticket with a single red stripe along its edge, completely blank, resting on a harbour desk beside a brass ticket punch, the heading plate](logo.png)

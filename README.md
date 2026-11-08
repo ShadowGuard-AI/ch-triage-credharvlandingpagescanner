@@ -1,10 +1,8 @@
-![A noon lagoon with nothing to read in it: pale sand, a standing coral branch, parrotfish past a low ledge, a sleeping turtle in the ledge shade, no board and no name](intro-banner.png)
-
 # ch-triage-CredHarvLandingPageScanner
 
-![The coral branch mark on a disc of shadow blue water, with one small parrotfish at its left](logo.png)
+![One plain cream boarding ticket with a single red stripe along its edge, completely blank, resting on a harbour desk beside a brass ticket punch, the heading plate](logo.png)
 
-![The reef garden at noon with the title lettered on a weathered sounding board half buried at the lower left](banner.png)
+![An inspector at a ship's gangway handing back the plain ticket a passenger presented, a stack of blank cream tickets on the desk and one red striped ticket laid apart carrying rows of faint tick marks](banner.png)
 
 ![The lagoon in three layers of water: noon light moves at the surface, the branch stands while fish cross and the turtle breathes, and bubbles rise from the sand bed](scene.svg)
 

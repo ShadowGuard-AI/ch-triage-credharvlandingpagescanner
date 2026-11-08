@@ -3,88 +3,96 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ch-triage-credharvlandingpagescanner: Coral Reef Lagoon at Noon</title>
-<meta name="description" content="Given a URL, downloads the HTML content of the landing page and scans for credential fields and form submission endpoints.">
+<title>ch-triage-credharvlandingpagescanner: The Gangway Desk</title>
 <style>
-@font-face{font-family:'Baloo 2';src:url('fonts/Baloo2.ttf') format('truetype');}
-@font-face{font-family:'Cabin';src:url('fonts/Cabin.ttf') format('truetype');}
-:root{--shadow:#184e6b;--shadow2:#0f3a52;--deep:#1e6b4f;--amber:#c98f2d;--sand:#efe3c0;--abalone:#e9e4d8;--ink:#14313f}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,var(--shadow) 0%,var(--shadow2) 100%);color:var(--ink);font-family:'Cabin',sans-serif;line-height:1.65}
-h1,h2,h3{font-family:'Baloo 2',sans-serif;color:var(--deep)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end}
-.hero img.heroimg{width:100%;height:58vh;object-fit:cover;display:block}
-.hero .in{padding:1rem 6vw 2.2rem 9vw;max-width:1180px;margin:0 auto;width:100%;color:var(--sand);position:relative}
-.hero h1{color:var(--sand);font-size:2rem;margin:.4rem 0}
-.logo{width:200px;border-radius:4px}
-main{padding:0 6vw 3rem 9vw;max-width:1180px;margin:0 auto;position:relative}
-main::before{content:'';position:absolute;left:3.2vw;top:0;bottom:0;width:3px;background:repeating-linear-gradient(180deg,var(--amber) 0 3px,transparent 3px 34px)}
-nav{display:flex;gap:.9rem;flex-wrap:wrap;margin:1.2rem 0}
-.weight{display:inline-block;text-decoration:none;color:var(--sand);font-family:'Baloo 2',sans-serif;font-size:1rem;padding:.85rem 1.3rem .55rem;background:radial-gradient(ellipse at 50% 30%,#2a6a8c,#123c56);border:2px solid #7a5c22;border-radius:48% 48% 46% 46%/60% 60% 40% 40%;text-align:center;position:relative;transition:box-shadow .15s}
-.weight:hover{box-shadow:0 0 0 5px rgba(201,143,45,.35),0 0 18px rgba(255,252,220,.35)}
-.weight:active{background:radial-gradient(ellipse at 50% 30%,#1d5878,#0d3049)}
-.weight:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
-.slate{background:linear-gradient(140deg,#f0ead9,#e3ddcd 55%,#ece5d4);border-radius:6px;box-shadow:inset 0 0 24px rgba(30,107,79,.14);padding:.4rem 1.6rem 1.4rem 2rem;margin:1.8rem 0;position:relative}
-.slate::before{content:'';position:absolute;left:11px;top:14px;bottom:14px;width:3px;background:repeating-linear-gradient(180deg,var(--deep) 0 10px,transparent 10px 22px)}
-.slate h2{font-size:1.7rem;border-bottom:1px solid rgba(30,107,79,.35);padding-bottom:.3rem}
-pre{background:var(--shadow2);color:var(--sand);padding:1rem;overflow-x:auto;font-size:.95rem}
-a{color:#8a5c10}
-a::before{content:'';display:inline-block;width:13px;height:13px;margin-right:.45em;border:2px solid rgba(201,143,45,.55);border-left-color:transparent;border-radius:50%;vertical-align:-1px}
-a:hover::before{border-color:var(--amber)}
-.weight::before{content:none}
-.arm{height:16px;margin:2.2rem 0;position:relative;background:radial-gradient(ellipse 60px 7px at 8% 50%,var(--deep) 60%,transparent 61%),radial-gradient(ellipse 60px 7px at 30% 50%,var(--deep) 60%,transparent 61%),radial-gradient(ellipse 60px 7px at 52% 50%,var(--deep) 60%,transparent 61%),radial-gradient(ellipse 60px 7px at 74% 50%,var(--deep) 60%,transparent 61%),radial-gradient(ellipse 60px 7px at 95% 50%,var(--deep) 60%,transparent 61%)}
-.arm::after{content:'· · · · · · · · · · · ·';position:absolute;left:6%;top:5px;color:var(--abalone);letter-spacing:2.6em;font-size:.6rem}
-.ctl{display:flex;gap:1rem;padding:.5rem 0;border-bottom:1px solid rgba(30,107,79,.25)}
-.ctl b{font-family:'Baloo 2',sans-serif;min-width:60px;color:var(--deep)}
-.shade{background:var(--deep);color:var(--sand);border-top:9px solid #123c2c;padding:.2rem 1.3rem 1rem;margin:1.3rem 0}
-.shade h3{color:var(--sand);font-size:1.35rem}
-footer{padding:1rem 6vw 2.4rem 9vw;max-width:1180px;margin:0 auto;color:var(--sand)}
+@font-face { font-family: "Trade Winds"; src: url("fonts/TradeWinds-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Arimo"; src: url("fonts/Arimo-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Arimo"; src: url("fonts/Arimo-700.woff2") format("woff2"); font-weight: 700; }
+:root {
+  --paper: #faf6ec; --cream: #f2ecdc; --ink: #33302a; --soft: #6f6a5e;
+  --timber: #6d4c33; --harbour: #5b6a72; --red: #c0392b; --line: #ddd3bf; --card: #ffffff;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cream); color: var(--ink); font-family: "Arimo", sans-serif; line-height: 1.55; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 20px 64px; }
+header.hero { text-align: center; padding: 52px 0 8px; }
+img.hero-logo { width: min(430px, 82vw); border-radius: 10px; box-shadow: 0 10px 34px rgba(51,48,42,.22); }
+h1, h2 { font-family: "Trade Winds", cursive; line-height: 1.2; }
+h1 { font-size: clamp(24px, 4.4vw, 40px); margin: 26px 0 6px; }
+.tagline { color: var(--soft); font-size: 19px; margin: 0 auto; max-width: 660px; }
+.btns { margin: 22px 0 6px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+a.btn { font-family: "Trade Winds", cursive; text-decoration: none; padding: 11px 22px; border-radius: 999px; border: 2px solid var(--timber); color: var(--timber); background: transparent; }
+a.btn.solid { background: var(--red); border-color: var(--red); color: #fff; }
+figure { margin: 30px 0; }
+figure img { width: 100%; border-radius: 10px; display: block; box-shadow: 0 8px 28px rgba(51,48,42,.18); }
+figcaption { color: var(--soft); font-size: 15px; text-align: center; margin-top: 9px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 34px 0; }
+.fact { background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--red); border-radius: 8px; padding: 14px 16px; }
+.fact b { display: block; font-family: "Trade Winds", cursive; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; color: var(--harbour); margin-bottom: 4px; }
+section { margin: 38px 0; }
+h2 { font-size: 25px; margin: 0 0 12px; border-bottom: 2px solid var(--line); padding-bottom: 7px; }
+code, pre { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+pre { background: #2e2a24; color: #f3ecdd; padding: 15px 18px; border-radius: 8px; overflow-x: auto; font-size: 14.5px; }
+table { border-collapse: collapse; width: 100%; background: var(--card); }
+th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+th { font-family: "Trade Winds", cursive; background: var(--cream); }
+.hold { background: #fdf3ec; border: 1px solid #e8c9b8; border-left: 6px solid var(--red); border-radius: 8px; padding: 16px 20px; }
+.hold h2 { border: none; padding: 0; }
+.hold ul { margin: 8px 0 4px; padding-left: 20px; }
+footer { margin-top: 52px; border-top: 2px solid var(--line); padding-top: 16px; color: var(--soft); font-size: 14.5px; text-align: center; }
 </style>
 </head>
 <body>
+<div class="wrap">
 <header class="hero">
-<img class="heroimg" src="assets/intro-banner.png" alt="A noon lagoon with nothing to read in it: pale sand, a standing coral branch, parrotfish past a low ledge, a sleeping turtle in the ledge shade">
-<div class="in">
-<img class="logo" src="assets/logo.png" alt="A coral branch upright on a disc of shadow blue water with one small parrotfish at its left, the name lettered under it like marks on a sounding line">
-<h1>ch-triage-credharvlandingpagescanner</h1>
-<p>A noon survey transect, a straight line swum across the lagoon with a station at each documented fact. At noon, in water this clear, anything that does not belong here can be seen from a long way off.</p>
-<nav>
-<a class="weight" href="#fetch">Fetch This Page</a>
-<a class="weight" href="#posts">Show Flagged Forms</a>
-<a class="weight" href="#params">Show Help</a>
-</nav>
-</div>
+  <img class="hero-logo" src="assets/logo.png" alt="One plain cream boarding ticket with a single red stripe along its edge, completely blank, resting on a harbour desk beside a brass ticket punch">
+  <h1>ch-triage-credharvlandingpagescanner</h1>
+  <p class="tagline">The Gangway Desk. A command line tool that fetches one landing page, reads the HTML exactly as delivered, and reports the login forms whose submission endpoint looks wrong: the ones addressed somewhere other than the page's own origin.</p>
+  <div class="btns">
+    <a class="btn solid" href="https://github.com/ShadowGuard-AI/ch-triage-credharvlandingpagescanner">The repository</a>
+    <a class="btn" href="https://github.com/ShadowGuard-AI/ch-triage-credharvlandingpagescanner/blob/main/main.py">main.py</a>
+  </div>
 </header>
-<main>
-<section class="slate" id="fetch"><h2>One URL, Fetched Once</h2>
-<p>Given a URL, the tool downloads the HTML content of the landing page. That single sentence is the whole intake of the tool as documented: one user supplied URL, one page fetched. This station adds no crawls, no link following, and no site wide scanning, none of which the source claims.</p>
+
+<div class="facts">
+  <div class="fact"><b>Input</b>One user supplied URL, fetched over http or https only, with a ten second timeout</div>
+  <div class="fact"><b>Output</b>A report of the login forms that post off the page's own origin or to a non-web scheme</div>
+  <div class="fact"><b>Dependencies</b>requests 2.31.0 or later and beautifulsoup4 4.12.0 or later</div>
+  <div class="fact"><b>Fetch failure</b>An invalid URL or a failed fetch exits 1</div>
+</div>
+
+<section>
+  <h2>Usage</h2>
+  <pre>python3 main.py URL [-v] [-o OUTPUT]</pre>
+  <p>The URL is a required positional argument. The README's own usage line names no URL argument, although the address is the tool's whole input.</p>
+  <table>
+    <tr><th>Option</th><th>What it does</th></tr>
+    <tr><td><code>URL</code></td><td>The landing page to fetch and read (required). Only that one page is fetched; nothing is crawled.</td></tr>
+    <tr><td><code>-v</code></td><td>Verbose output. The README lists the flag with no description provided.</td></tr>
+    <tr><td><code>-o</code></td><td>Names the output file. The README lists the flag with no description provided.</td></tr>
+    <tr><td><code>-h</code></td><td>Show help message and exit.</td></tr>
+  </table>
 </section>
-<div class="arm"></div>
-<section class="slate"><h2>Credential Fields</h2>
-<p>On that page the scanner looks for input fields for username and password, and the form submission endpoints associated with them. The two field kinds carry their own markers on this transect, since a page can hold many forms and the source singles out credential fields as the ones that matter here.</p>
+
+<figure>
+  <img src="assets/banner.png" alt="An inspector at a ship's gangway handing back the plain ticket a passenger presented, a stack of blank cream tickets on the desk and one red striped ticket laid apart carrying rows of faint tick marks">
+  <figcaption>Each presented paper read once; the one addressed somewhere else is laid apart.</figcaption>
+</figure>
+
+<section class="hold">
+  <h2>Stated limits</h2>
+  <ul>
+    <li>The scan sees only the static markup as delivered. A page that builds its login form with JavaScript shows no form at all, and its clean answer means nothing was in the delivered text.</li>
+    <li>An input with no name attribute is dropped from the record entirely, including a password field, so a form whose password box is named only by id is never counted as a login form.</li>
+    <li>Login form detection needs a named username-like field: the field name is tested by substring for username, email, or user, alongside a password type input. The obvious field name login matches none of the three and is missed.</li>
+    <li>A form is flagged when its action uses a non-web scheme, or a host whose raw netloc string differs from the page's own, port and case included. A form posting to the organisation's own sign in subdomain is flagged the same as one posting to a stranger.</li>
+    <li>Nothing is crawled: one page is fetched, and only that page is read.</li>
+  </ul>
 </section>
-<div class="arm"></div>
-<section class="slate" id="posts"><h2>Where the Form Posts</h2>
-<p>The scanner reports potentially malicious form actions, and in the fuller phrasing it flags login forms that post off origin or to a non web scheme. Those two destinations, away from the page's own origin and away from ordinary web schemes, are the documented tests. No other test is listed, and this station invents no checks for page text, brand imitation, certificates, or redirects.</p>
-</section>
-<div class="arm"></div>
-<section class="slate"><h2>Taking the Tool and Calling It</h2>
-<pre>git clone https://github.com/ShadowStrikeHQ/ch-triage-credharvlandingpagescanner</pre>
-<pre>./ch-triage-credharvlandingpagescanner [params]</pre>
-<div class="shade"><h3>The URL Argument Is Not Named</h3>
-<p>The source describes a tool driven by a supplied URL, yet the usage form never names a URL argument, so how the address is handed over is not documented. That gap stays visible rather than being patched with a plausible looking example.</p></div>
-<p><a href="https://github.com/ShadowGuard-AI/ch-triage-credharvlandingpagescanner">The repository on GitHub</a></p>
-</section>
-<div class="arm"></div>
-<section class="slate" id="params"><h2>Three Parameters Only</h2>
-<div class="ctl"><b>-h</b><span>Shows a help message and exits.</span></div>
-<div class="ctl"><b>-v</b><span>No description provided in the source.</span></div>
-<div class="ctl"><b>-o</b><span>No description provided in the source.</span></div>
-<div class="shade"><h3>Listed Without a Description</h3>
-<p>Two of the three markers on this shoal, -v and -o, are listed without a description, so a reader cannot tell from the document what either one does. No meaning is guessed for -o as an output path, however common that pattern is elsewhere.</p></div>
-<p>The honesty panel closes the transect: the source gives no sample page, no example report, no list of schemes it treats as non web beyond that phrase, and no test results, and this page states each absence plainly. The credit line closes the page as printed, with no licence named:</p>
-<pre>Copyright (c) ShadowStrikeHQ</pre>
-</section>
-</main>
-<footer><p>Theme: Coral Reef Lagoon at Noon. Type: Baloo 2 for headings, Cabin for reading, both SIL Open Font License 1.1. The lettering reference Durango Western was reference only and is not embedded.</p></footer>
+
+<footer>
+  <p>The README of ch-triage-credharvlandingpagescanner closes with a copyright line and names no licence; the repository carries a separate LICENSE file headed MIT License. Site type is set in Trade Winds and Arimo, self-hosted under the SIL Open Font License and the Apache License.</p>
+</footer>
+</div>
 </body>
 </html>

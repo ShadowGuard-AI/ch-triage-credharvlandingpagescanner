@@ -8,7 +8,6 @@
 
 ![The lagoon in three layers of water: noon light moves at the surface, the branch stands while fish cross and the turtle breathes, and bubbles rise from the sand bed](scene.svg)
 
-# ch-triage-CredHarvLandingPageScanner
 Given a URL, downloads the HTML content of the landing page and scans for input fields (username/password) and associated form submission endpoints. Reports potentially malicious form actions. This is a landing page scanner: it fetches one user supplied URL and flags login forms that post off origin or to a non-web scheme.
 
 ![A minor divider: one small sonar ring at the centre](sep-light.svg)
